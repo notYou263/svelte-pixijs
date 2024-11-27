@@ -1,6 +1,9 @@
 {
 	"name": "svelte-pixijs",
 	"version": "0.0.1",
+	"description": "Create PixiJS v8 apps with Svelte 5",
+	"repository": "github:notYou263/svelte-pixijs", 	
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
