@@ -1,22 +1,43 @@
 <script>
 	import { Graphics, getStage, getApp, parsePoint } from 'svelte-pixijs';
 	import * as PIXI from 'pixi.js';
-	import { onMount } from 'svelte';
-
+	
 	let {
 		x = 0,
 		y = 0,
         size = 16,
         strokeWidth = 2,
-		colors: _colors = { },
+		nodeColors = {},
+		draggable = false,
         point = $bindable(parsePoint({x,y}))
 	} = $props();
 
+	let cursor = $state('pointer')
+
+	$effect(()=>{
+		if(draggable == true){
+			cursor = 'grab'
+			   
+			stage.eventMode = 'static';
+			stage.hitArea = app.screen
+			stage.on('pointerup', onPointerUp);
+			stage.on('pointerupoutside', onPointerUp);
+		}
+		else {
+			cursor = 'pointer'
+		}
+
+		return () => {
+			stage.off('pointerup', onPointerUp);
+        	stage.off('pointerupoutside', onPointerUp);
+        
+		}
+	})
     const { app } = getApp()
     const { stage } = getStage()
    
     const default_colors = {
-        
+  
 			fill: {
 				color: 0xfafafa,
 				hover: 0x8dfbdc,
@@ -28,48 +49,35 @@
 				hover: 0x214a7d,
 				active: 0xabddff
 			}
+		
     }
 
-    let colors = { 
+    let _colors = $state({ 
         ... default_colors,
-        ... _colors
-    }
+        ... nodeColors
+    })
 
-    let fillColor = $state(colors?.fill?.color ?? 0xffffff);
-	let strokeColor = $state(colors?.stroke?.color ?? 0x303030);
-	
+
+    let fillColor = $state( nodeColors?.fill?.color ?? 0xffffff);
+	let strokeColor = $state( nodeColors?.stroke?.color ?? 0x303030);
+
     let dragTarget
 
-   // export const point = parsePoint({x,y})
-
-    onMount(() => {
-        
-        stage.eventMode = 'static';
-        stage.hitArea = app.screen
-        stage.on('pointerup', onPointerUp);
-        stage.on('pointerupoutside', onPointerUp);
-
-        return () => {
-         stage.off('pointerup', onPointerUp);
-         stage.off('pointerupoutside', onPointerUp);
-        
-        }
-    })
-    
 	function onPointerOver(evt){
-		fillColor = colors?.fill?.hover
-		strokeColor = colors?.stroke?.hover
+		fillColor = nodeColors?.fill?.hover
+		strokeColor = nodeColors?.stroke?.hover
 		//this.colors = { fillColor: default_colors.fill.active, strokeColor: default_colors.stroke.hover } 
 	}
 
 	function onPointerOut(evt){
-		fillColor = colors?.fill?.color
-		strokeColor = colors?.stroke?.color
+		fillColor = nodeColors?.fill?.color
+		strokeColor = nodeColors?.stroke?.color
 	}
 
     function onPointerDown(evt){
-		fillColor = colors?.fill?.active
-		strokeColor = colors?.stroke?.active
+
+		fillColor = nodeColors?.fill?.active
+		strokeColor = nodeColors?.stroke?.active
 
         //dragTarget = this
         stage.on('pointermove', onPointerMove)
@@ -100,14 +108,14 @@
 		{x}
 		{y}
 		eventMode={'static'}
-		cursor={'grab'}
+		{cursor}
 		roundPixels={true}
 		onpointerover={onPointerOver}
 		onpointerout={onPointerOut}
         onpointerdown={onPointerDown}
         onpointerup={onPointerUp}
 		draw={function (graphics) {
-			   console.log("Node graphic draw")
+		
 			graphics.clear();
 			// graphics.beginFill(color)
 			graphics

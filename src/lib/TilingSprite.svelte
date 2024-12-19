@@ -19,6 +19,8 @@
       | 'pluginName'
       | 'roundPixels'
       | 'tilePosition'
+      | 'tileRotation'
+      |  'tileScale'
       | 'tileTransform'
       | 'uvMatrix'
       | 'uvRespectAnchor',
@@ -37,6 +39,8 @@
     roundPixels,
     texture,
     tilePosition,
+    tileScale,
+    tileRotation,
     tileTransform,
     uvMatrix,
     uvRespectAnchor,
@@ -46,7 +50,7 @@
   } = $props<Props>()
 
   export const instance = (_instance ??
-    new PIXI.TilingSprite(texture, width, height)) as T
+    new PIXI.TilingSprite({texture, width, height})) as T
 
   const { invalidate } = getRenderer()
   const { applyProp } = createApplyProps<PIXI.TilingSprite>(instance, {
@@ -63,6 +67,8 @@
   $effect(() => applyProp('height', height))
   $effect(() => applyProp('texture', texture))
   $effect(() => applyProp('tilePosition', tilePosition))
+  $effect(() => applyProp('tileRotation', tileRotation))
+  $effect(() => applyProp('tileScale', tileScale))
   $effect(() => applyProp('tileTransform', tileTransform))
   $effect(() => applyProp('uvMatrix', uvMatrix))
   $effect(() => applyProp('uvRespectAnchor', uvRespectAnchor))

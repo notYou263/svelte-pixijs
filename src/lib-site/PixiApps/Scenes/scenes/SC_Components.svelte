@@ -8,6 +8,10 @@
 	import Mesh from '../../../PixiComps/Mesh.svelte';
 	import Plane from '../../../PixiComps/Plane.svelte';
 	import NineSliceSprite from '../../../PixiComps/NineSliceSprite.svelte';
+	import PerspectiveMesh from 'svelte-pixijs/PerspectiveMesh.svelte';
+	import PointList from '$lib-site/PixiComps/Nodes/PointList.svelte';
+	import Ticker from 'svelte-pixijs/Ticker.svelte';
+	import Tiling from '$lib-site/PixiComps/Tiling.svelte';
 
 	const skewTextStyle = new PIXI.TextStyle({
 		fontFamily: 'Arial',
@@ -16,9 +20,7 @@
 			angle: 2.1,
 			blur: 1,
 			color: '0x174061',
-			distance: 8,
-            
-
+			distance: 8
 		},
 		fill: '#ffffff',
 		stroke: { color: 0x1ea7e1, width: 10, join: 'round' },
@@ -27,12 +29,19 @@
 	});
 
 	const skewText = new PIXI.Text({
-		text:  'Svelte ♥️ Pixi', // ' 8==✊🏻==D💦  \t ♥️', 
+		text: 'Svelte ♥️ Pixi', // ' 8==✊🏻==D💦  \t ♥️',
 		style: skewTextStyle
 	});
 
 	skewText.skew.set(0.72, -0.4);
 	skewText.anchor.set(0.5, 0.5);
+
+	let perspectiveCorners = $state([
+		{ x: 0, y: 0 },
+		{ x: 133, y: 0 },
+		{ x: 100, y: 80 },
+		{ x: -20, y: 120 }
+	]);
 </script>
 
 <HTMLText
@@ -50,7 +59,7 @@
 ></HTMLText>
 
 <Text x={380} y={120} instance={skewText}></Text>
-
+<!-- 
 <Sprite
 	x={570}
 	y={180}
@@ -59,6 +68,7 @@
 	anchor={0.5}
 	scale={0.45}
 />
+ -->
 <Sprite
 	x={320}
 	y={520}
@@ -88,7 +98,7 @@
 	scale={2}
 />
 
-<Snake x={540} y={480}></Snake>
+<Snake x={180} y={280} scale={1} debug={true}></Snake>
 
 <Ball x={240} y={380} size={50} color={0x44d2b2}></Ball>
 <Ball x={140} y={500} size={30} color={0xffb212}></Ball>
@@ -98,3 +108,15 @@
 <Plane></Plane>
 
 <NineSliceSprite></NineSliceSprite>
+
+
+<Tiling></Tiling>
+<PointList bind:points={perspectiveCorners} x={820} y={50} drawLines closePath>
+	<PerspectiveMesh
+		texture={PIXI.Texture.from('eddie_face')}
+		vertices={{ x: 10, y: 10 }}
+		x={0}
+		y={0}
+		corners={perspectiveCorners}
+	></PerspectiveMesh>
+</PointList>

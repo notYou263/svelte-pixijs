@@ -24,6 +24,7 @@
     draw,
     blendMode,
     pluginName,
+    roundPixels,
     tint,
     geometry,
     children,
@@ -43,6 +44,7 @@
   $effect(() => applyProp('blendMode', blendMode))
   $effect(() => applyProp('pluginName', pluginName))
   $effect(() => applyProp('tint', tint))
+  $effect(() => applyProp('roundPixels', roundPixels))
 
   $effect(() => {
     if (draw) {

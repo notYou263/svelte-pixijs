@@ -73,4 +73,4 @@ void main() {
 	//const _mesh = new PIXI.Mesh({ geometry, shader })
 </script>
 
-<Mesh x={740} y={100} anchor={0.5} scale={0.8} {geometry} {shader} {rotation} />
+<Mesh x={700} y={100} anchor={0.5} scale={0.7} {geometry} {shader} {rotation} />
