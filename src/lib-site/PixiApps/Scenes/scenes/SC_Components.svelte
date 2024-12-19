@@ -109,8 +109,8 @@
 
 <NineSliceSprite></NineSliceSprite>
 
-
 <Tiling></Tiling>
+
 <PointList bind:points={perspectiveCorners} x={820} y={50} drawLines closePath>
 	<PerspectiveMesh
 		texture={PIXI.Texture.from('eddie_face')}
