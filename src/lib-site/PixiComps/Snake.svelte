@@ -25,12 +25,13 @@
 	});
 </script>
 
-<Container {x} {y} {... restProps}>
+<Container {x} {y} >
   <!--
    '/assets/snake.png' 
   -->
-	<MeshRope texture={PIXI.Texture.from( '/assets/laser/green_02.png')}  {points}/> 
+	<MeshRope texture={PIXI.Texture.from( '/assets/laser/green_02.png')}  {points} {... restProps}/> 
 
 	<PointList  bind:points renderable={debug}></PointList>
   
 </Container>
+

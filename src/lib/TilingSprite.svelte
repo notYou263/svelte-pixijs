@@ -15,6 +15,7 @@
       PIXI.TilingSprite,
       | 'anchor'
       | 'blendMode'
+      | 'tint'
       | 'clampMargin'
       | 'pluginName'
       | 'roundPixels'
@@ -33,6 +34,7 @@
   const {
     anchor,
     blendMode,
+    tint,
     clampMargin,
     height,
     pluginName,
@@ -61,6 +63,7 @@
 
   $effect(() => applyProp('anchor', anchor))
   $effect(() => applyProp('blendMode', blendMode))
+  $effect(() => applyProp('tint', tint))
   $effect(() => applyProp('pluginName', pluginName))
   $effect(() => applyProp('roundPixels', roundPixels))
   $effect(() => applyProp('clampMargin', clampMargin))

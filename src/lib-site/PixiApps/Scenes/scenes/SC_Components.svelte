@@ -98,7 +98,7 @@
 	scale={2}
 />
 
-<Snake x={180} y={280} scale={1} debug={true}></Snake>
+<Snake tint={0xcc1111} x={180} y={280} scale={1} debug={true}></Snake>
 
 <Ball x={240} y={380} size={50} color={0x44d2b2}></Ball>
 <Ball x={140} y={500} size={30} color={0xffb212}></Ball>

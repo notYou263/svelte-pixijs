@@ -1,6 +1,6 @@
 {
 	"name": "svelte-pixijs",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Create PixiJS v8 apps with Svelte 5",
 	"repository": "github:notYou263/svelte-pixijs", 	
 	"license": "MIT",

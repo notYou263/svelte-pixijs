@@ -63,6 +63,7 @@
       | 'sortableChildren'
       | 'width'
       | 'transform'
+      | 'tint'
       | 'visible'
       | 'x'
       | 'y'
@@ -143,6 +144,7 @@
     skew,
     sortableChildren,
     transform,
+    tint,
     visible,
     x,
     y,
@@ -224,6 +226,7 @@
   $effect(() => applyProp('skew', skew))
   $effect(() => applyProp('sortableChildren', sortableChildren))
   $effect(() => applyProp('transform', transform))
+  $effect(() => applyProp('tint', tint))
   $effect(() => applyProp('visible', visible))
   $effect(() => applyProp('x', x))
   $effect(() => applyProp('y', y))

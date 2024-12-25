@@ -20,6 +20,7 @@
       | 'state'
       | 'geometry'
       | 'drawMode',
+      | 'tint',
       'texture'
     > & {
       instance?: T
@@ -35,6 +36,7 @@
     shader,
     state,
     drawMode,
+    tint,
     geometry,
     instance: _instance,
     ...restProps
@@ -64,6 +66,7 @@
   $effect(() => applyProp('shader', shader))
   $effect(() => applyProp('state', state))
   $effect(() => applyProp('drawMode', drawMode))
+  $effect(() => applyProp('tint', tint))
   $effect(() => applyProp('texture', texture))
 
   $effect(() =>

@@ -13,7 +13,7 @@
   type Props = Container<T>['$$prop_def'] &
     PickPixiProps<
       PIXI.Sprite,
-      'anchor' | 'blendMode' | 'pluginName' | 'roundPixels',
+      'anchor' | 'blendMode' | 'pluginName' | 'roundPixels' | 'tint',
       'texture'
     > & {
       instance?: T
@@ -24,6 +24,7 @@
     blendMode,
     pluginName,
     roundPixels,
+    tint,
     texture,
     instance: _instance,
     ...restProps
@@ -41,6 +42,7 @@
   $effect(() => applyProp('blendMode', blendMode))
   $effect(() => applyProp('pluginName', pluginName))
   $effect(() => applyProp('roundPixels', roundPixels))
+  $effect(() => applyProp('tint', tint))
   $effect(() => applyProp('texture', texture))
   $effect(() => {
     const inv = () => invalidate()
